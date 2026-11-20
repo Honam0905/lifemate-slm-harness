@@ -1,0 +1,5 @@
+# v2 agent scored on dev with ASR round-2 Model A2 step 600 transcripts (attention+MLP LoRA, Kaggle 5 Nov).
+base: v2.yaml
+asr:
+  model_path: models/asr-ftA2-s600
+  tag: ftA2-s600

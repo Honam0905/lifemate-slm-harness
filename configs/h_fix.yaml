@@ -1,0 +1,5 @@
+# Harness ablation 2: + type repair + constrained decoding (inference only, same model).
+base: h_cache.yaml
+harness:
+  coerce_types: true
+  constrained: true

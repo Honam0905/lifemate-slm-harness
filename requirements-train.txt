@@ -1,0 +1,9 @@
+# Training / merge / eval environment (Python 3.13 on Colab). torch was Colab's preinstalled 2.11.0+cu130.
+torch==2.11.0
+transformers==5.22.0
+peft==0.21.2
+accelerate==1.15.0
+torchao>=0.16            # Colab shipped torchao 0.10, which peft 0.21 rejects; VM used 0.18.0
+safetensors
+huggingface_hub[hf_xet]
+pyyaml

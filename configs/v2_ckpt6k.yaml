@@ -1,0 +1,4 @@
+# Speed test only: v2 with gradient checkpointing off for sequences under 6,000 tokens.
+base: v2.yaml
+train:
+  ckpt_min_tokens: 6000

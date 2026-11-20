@@ -1,0 +1,17 @@
+# v2 + renaming augmentation (6 Nov). Same data, loss and prompt as v2; half of every training file is shown with
+# other app / tool / parameter names and paraphrased descriptions, so the agent learns to read the tool list (the
+# public test has 11 apps that never occur in training: v1 called one in 45% of public samples).
+# Build: scripts/build_trajectories.py + build_v2_data.py as for v2, then scripts/apply_rename.py --config configs/v2r.yaml
+# Eval/predict configs: the v2_* ones (same prompt; renaming is training-only, inference sees the real catalog).
+base: v2.yaml
+run_name: v2r-minicpm5-2b
+train:
+  variants: [gold_r, asr_r, earlier_r, synth_r]
+rename:
+  maps: [synth/rename/out/rename_part1.json, synth/rename/out/rename_part2.json, synth/rename/out/rename_part3.json]
+  sources: [gold, asr, earlier, synth]
+  fraction: 0.5        # share of examples renamed (the rest keep the real names, which most public tools still use)
+  app_prob: 0.8        # in a renamed example, each app is renamed with this probability (mixed old/new names)
+  param_prob: 0.5      # each parameter of a renamed tool gets an alternative name with this probability
+  desc_prob: 0.5       # each description is swapped for a paraphrase with this probability
+  seed: 11

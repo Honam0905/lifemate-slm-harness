@@ -1,0 +1,5 @@
+# 4 Nov v1 tuning: v1 + constrained decoding (names, params, enums, seen IDs) + argument type repair.
+base: v1.yaml
+harness:
+  coerce_types: true
+  constrained: true

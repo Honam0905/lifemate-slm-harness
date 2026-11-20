@@ -1,0 +1,10 @@
+# FINAL FIT (submission model): the v2r recipe on ALL 1,545 conversations (train + dev + audit) and ALL apps, nothing
+# held out. Train it only after the dev runs (v2 / v2r) have chosen the recipe; it can't be scored on dev (it has seen
+# dev), so it goes straight to the public prediction with the chosen ASR transcripts (configs/v2_ftB2_s*.yaml).
+# Build: scripts/build_final_fit.py --config configs/v2r_all.yaml, then scripts/apply_rename.py --config configs/v2r_all.yaml
+base: v2r.yaml
+run_name: v2r-all-minicpm5-2b
+train:
+  variants: [allgold_r, allasr_r, allearlier_r, allsynth_r]
+rename:
+  sources: [allgold, allasr, allearlier, allsynth]

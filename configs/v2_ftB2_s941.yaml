@@ -1,0 +1,5 @@
+# v2 public submission with ASR round-2 Model B2 step 941 transcripts (all clips incl. dev/audit: never score on dev).
+base: v2.yaml
+asr:
+  model_path: models/asr-ftB2-s941
+  tag: ftB2-s941

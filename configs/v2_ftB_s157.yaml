@@ -1,0 +1,6 @@
+# v2 public submission with the Model B step 157 transcripts (names context): the ASR of the 34.35 submission.
+# Model B has heard every train clip incl. dev/audit: never score it on dev/audit.
+base: v2.yaml
+asr:
+  model_path: models/asr-ftB-s157
+  tag: ftB-s157

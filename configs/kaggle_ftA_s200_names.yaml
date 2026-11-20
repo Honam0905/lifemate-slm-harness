@@ -1,0 +1,6 @@
+# Kaggle ASR LoRA Model A (train partition only) step 200, names-only context — evaluated on dev.
+# Transcripts come from the Kaggle run (copy out/asr/* into artifacts/asr/); model_path is only needed to transcribe again.
+base: today_names.yaml
+asr:
+  model_path: models/asr-ftA-s200
+  tag: ftA-s200

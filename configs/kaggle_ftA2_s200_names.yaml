@@ -1,0 +1,5 @@
+# v1 agent + ASR round-2 Model A2 step 200 transcripts (Kaggle lifemate_asr_round2, attention+MLP LoRA) - dev eval.
+base: today_names.yaml
+asr:
+  model_path: models/asr-ftA2-s200
+  tag: ftA2-s200

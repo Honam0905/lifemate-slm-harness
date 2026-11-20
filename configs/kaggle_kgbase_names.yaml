@@ -1,0 +1,6 @@
+# Kaggle float32 base ASR (no fine-tuning), names-only context: the like-for-like baseline for the ft runs.
+# Transcripts come from the Kaggle run (copy out/asr/* into artifacts/asr/); model_path is only needed to transcribe again.
+base: today_names.yaml
+asr:
+  model_path: models/asr-kgbase
+  tag: kgbase

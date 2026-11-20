@@ -1,0 +1,5 @@
+# v1 agent + ASR round-2 Model B2 step 941 transcripts (all clips incl. dev/audit: public only, never score on dev).
+base: today_names.yaml
+asr:
+  model_path: models/asr-ftB2-s941
+  tag: ftB2-s941

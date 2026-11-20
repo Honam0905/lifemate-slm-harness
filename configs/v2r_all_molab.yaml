@@ -1,0 +1,3 @@
+base: v2r_all.yaml
+train:
+  ckpt_min_tokens: 100000

@@ -1,0 +1,4 @@
+# Harness ablation 1: v1 + KV prefix cache (speed; accuracy should be unchanged). Baseline for the next ones.
+base: v1.yaml
+harness:
+  prefix_cache: true

@@ -1,0 +1,10 @@
+# 7 Nov recipe (c): the v2rb data with FULL fine-tuning (no LoRA): fp32 master weights + bf16 autocast, AdamW,
+# lr 1e-5. Memory: weights + grads + Adam = 40 GB, so sequences of 6K+ tokens use gradient checkpointing.
+# Checkpoints are bf16 model dirs (5 GB) at epoch ends only; no optimizer state, so no resume.
+base: v2rb.yaml
+run_name: v2rb-full-minicpm5-2b
+train:
+  full_ft: true
+  lr: 1.0e-5
+  ckpt_min_tokens: 6000
+  save_every_steps: 100000

@@ -1,0 +1,10 @@
+# FINAL FIT of recipe v2rb: ALL 1,545 conversations (train + dev + audit) and ALL apps, 50% renamed, do-nothing
+# rebalanced (7.5%). Never score it on dev (it has seen dev): straight to the public prediction (configs/v2_ftB2_s941.yaml).
+# Needs the all* renamed files: scripts/apply_rename.py --config configs/v2rb_all.yaml (cloud/molab_job.sh does it).
+base: v2rb.yaml
+run_name: v2rb-all-minicpm5-2b
+train:
+  data_tag: v2rb_all
+  variants: [allgold_r, allasr_r, allearlier_r, allsynth_r]
+rename:
+  sources: [allgold, allasr, allearlier, allsynth]

@@ -1,0 +1,14 @@
+# LifeMate v2 (5 Nov): same frozen MiniCPM5-2B base and LoRA, more and better-shaped data.
+#   final turns x {gold, asr}  +  earlier turns (one transcript each)  +  validated synthetic items (gold text)
+# The train-clip ASR transcripts are the base Qwen3-ASR with names-only context (this config's asr section);
+# dev/public scoring uses the fine-tuned ASR transcripts via configs/v2_ftA_s100.yaml / v2_ftB_s157.yaml.
+base: today_names.yaml
+run_name: v2-minicpm5-2b
+prompt:
+  date_table: true         # computed calendar in the context block, now trained with (inference reads the same flag)
+train:
+  epochs: 2
+  variants: [gold, asr, earlier, synth]   # tokenized/<run>/train.<variant>.pt
+  loss_norm: trajectory    # every conversation counts equally (v1: token-weighted, so long ones dominated)
+  ckpt_min_tokens: 0       # sequences shorter than this skip gradient checkpointing (0 = always checkpoint); set after the smoke test
+  source_fraction: {earlier: 0.5, synth: 0.5}   # per epoch: a different half each epoch, so 2 epochs = each example once

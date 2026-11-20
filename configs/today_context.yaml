@@ -1,0 +1,4 @@
+# 4 Nov v1 tuning: v1 + ASR context biasing only (no constraints / type repair). Uses the "-ctx" transcript cache.
+base: v1.yaml
+asr:
+  context: true

@@ -1,0 +1,6 @@
+# Kaggle ASR LoRA Model B (ALL train clips incl. dev/audit) step 314 — final fit; never score it on dev/audit.
+# Transcripts come from the Kaggle run (copy out/asr/* into artifacts/asr/); model_path is only needed to transcribe again.
+base: today_names.yaml
+asr:
+  model_path: models/asr-ftB-s314
+  tag: ftB-s314

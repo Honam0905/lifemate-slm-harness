@@ -1,0 +1,5 @@
+# 4 Nov v1 tuning: date table + names-only ASR context.
+base: today_date.yaml
+asr:
+  context: true
+  context_mode: names

@@ -1,0 +1,10 @@
+# 7 Nov recipe (a): v2r (website 41.75, dev C 44.24 with A2-s600) + do-nothing REBALANCE. Per-epoch do-nothing share
+# 11.2% -> 7.8% (real data 7.5%): keep 35% of the synthetic `none` items and 65% of the earlier-turn ones (hash of the
+# example id, lifemate/data/mix.py, applied at tokenisation). v2r answered nothing on 23 dev samples (14 right),
+# v1 on 11 (9 right). Everything else as v2r. LoRA r32 fits the 96 GB molab GPU without gradient checkpointing.
+base: v2r.yaml
+run_name: v2rb-minicpm5-2b
+train:
+  data_tag: v2rb           # tokenized/v2rb: shared by every dev recipe below (same data)
+  none_keep: {earlier: 0.65, synth: 0.35}
+  ckpt_min_tokens: 100000  # = never checkpoint (v2r on molab: peak 77.5 GB)

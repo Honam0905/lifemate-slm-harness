@@ -1,0 +1,6 @@
+# v2 scored on dev with the Kaggle ASR LoRA Model A step 100 transcripts (names context): same transcripts as the
+# 36.10 baseline (v1 + ftA-s100), so the paired comparison isolates the agent change.
+base: v2.yaml
+asr:
+  model_path: models/asr-ftA-s100
+  tag: ftA-s100

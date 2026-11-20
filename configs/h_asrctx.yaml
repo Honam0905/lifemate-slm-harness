@@ -1,0 +1,4 @@
+# Harness ablation 3: + ASR context biasing (history assistant replies + profile). New transcript cache ("-ctx").
+base: h_fix.yaml
+asr:
+  context: true

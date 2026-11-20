@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+/artifacts/*
+!/artifacts/splits/
+/result/
+/outputs/
+/data/
+*.wav
+*.safetensors
+.venv*/

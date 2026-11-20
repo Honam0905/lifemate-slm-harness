@@ -1,0 +1,5 @@
+# 4 Nov v1 tuning: v1 + ASR context biasing with a short list of names only (full replies get copied by the ASR).
+base: v1.yaml
+asr:
+  context: true
+  context_mode: names

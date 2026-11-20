@@ -1,0 +1,67 @@
+# LifeMate v1: MiniCPM5-2B agent (LoRA SFT on gold final-turn trajectories) + Qwen3-ASR-1.7B.
+# Paths are relative to the project root unless absolute; LIFEMATE_DATA_ROOT / LIFEMATE_ARTIFACTS override them.
+run_name: v1-minicpm5-2b
+seed: 1234
+
+data:
+  root: train+public_test/train+public_test   # folder holding train/ and public_test/ (read-only)
+  artifacts: artifacts
+
+agent:
+  model_id: openbmb/MiniCPM5-2B
+  revision: f97400052a43d642bbc6e9975e2397e3ae6a6b52   # 2026-09-06, Apache-2.0, 2,516,756,480 params (LlamaForCausalLM)
+  tool_format: minicpm_xml     # agent/actions.py renderer/parser matching this chat template
+  stop_text: DONE
+  max_new_tokens: 256
+  # tried later, in this order, if MiniCPM5 does not work out
+  fallbacks:
+    - {model_id: Nanbeige/Nanbeige4.2-3B, revision: b82e54bd609793562a75cbf9337970a93369eab5, params: 4169800704}
+    - {model_id: Qwen/Qwen3.5-4B, revision: 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a, params_text_only: 4205751296}
+
+asr:
+  backend: qwen3_asr
+  model_id: Qwen/Qwen3-ASR-1.7B
+  revision: 7278e1e70fe206f11671096ffdd38061171dd6e5    # 2026-01-28, Apache-2.0, 2,349,217,408 params
+  language: Vietnamese
+  batch_size: 32
+  max_new_tokens: 256
+  context: false           # pass history assistant texts + installed app names to the ASR as context (biasing)
+
+# Harness options (all off = the v1 harness as measured on 2026-11-03). Later configs switch them on one at a time.
+prompt:
+  date_table: false        # computed calendar (today / tomorrow / this & next week) in the context block
+harness:
+  coerce_types: false      # repair argument types to the schema ("845000" -> 845000, "['a']" -> ["a"]) before validate
+  prefix_cache: false      # keep the KV cache between steps of one sample (batch-of-one path only)
+  constrained: false       # constrained decoding of tool names, param names, enum values and seen IDs
+
+budget:
+  ctx_max: 16384
+  sample_budget_s: 30
+  params_total_max: 6000000000   # strictly fewer than this
+  params_llm_max: 5000000000
+
+splits:
+  name: v1
+  seed: 2026
+  dev: 250
+  audit: 145
+  # less common train-only app families held out for unseen-app slices (dev/audit only; never in training prompts)
+  unseen_apps: [lottery, library, bike_rental, podcast_radio, loyalty]
+  unseen_dev_fraction: 0.6
+
+train:
+  lora_r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  lora_targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  lr: 1.0e-4
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  grad_clip: 1.0
+  epochs: 2
+  micro_batch: 1
+  grad_accum: 16
+  max_len: 16384
+  save_every_steps: 50          # optimizer steps
+  variants: [gold, asr]         # transcript sources; each episode appears once per variant

@@ -1,0 +1,5 @@
+# ASR LoRA pilot: names-only context with the fine-tuned ASR merged at step 200 (artifacts/models/asr-ft-s200).
+base: today_names.yaml
+asr:
+  model_path: models/asr-ft-s200
+  tag: ft-s200

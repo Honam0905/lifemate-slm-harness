@@ -1,0 +1,5 @@
+# 4 Nov v1 tuning: names-only ASR context + constrained decoding + type repair.
+base: today_names.yaml
+harness:
+  coerce_types: true
+  constrained: true
