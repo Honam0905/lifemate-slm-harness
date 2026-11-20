@@ -45,6 +45,9 @@ def main():
                 print(f"[tok] skip {src} (not built)")
                 continue
             trajs = [json.loads(l) for l in open(src, encoding="utf-8")]
+            if not trajs:   # e.g. train.synth.jsonl when no synthetic conversations are present
+                print(f"[tok] skip {src} (empty)")
+                continue
             if part == "train" and cfg["train"].get("none_keep"):
                 trajs, st = filter_noops(trajs, cfg["train"]["none_keep"], cfg.get("seed", 0))
                 print(f"[tok] {part}.{variant}: none_keep {cfg['train']['none_keep']}: {st}")

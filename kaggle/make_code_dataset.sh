@@ -7,7 +7,7 @@ OUT=${1:-../../dist}
 mkdir -p "$OUT"
 rm -f "$OUT/lifemate-code-kaggle.zip"
 zip -qr "$OUT/lifemate-code-kaggle.zip" lifemate scripts configs kaggle tests colab artifacts/splits artifacts/asr_ft artifacts/gold \
-    HANDOFF.md TONIGHT.md final-plan.md competition-notes.md requirements-infer.txt requirements-train.txt \
+    README.md requirements-infer.txt requirements-train.txt \
     -x '*/__pycache__/*' '*.pyc'
 cp kaggle/lifemate_asr_overnight.ipynb "$OUT/"
 ls -la "$OUT/lifemate-code-kaggle.zip" "$OUT/lifemate_asr_overnight.ipynb"

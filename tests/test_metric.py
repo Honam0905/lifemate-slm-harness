@@ -1,4 +1,4 @@
-"""Hand-computed scorer cases (final-plan §4.6). Unless stated otherwise the hash matches."""
+"""Hand-computed scorer cases. Unless stated otherwise the hash matches."""
 from __future__ import annotations
 
 import json

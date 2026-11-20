@@ -1,7 +1,7 @@
 """LifeMate scorer: the official per-sample formula (hash gate, then F1 by maximum one-to-one call matching).
 
 This is the ONLY place call matching is implemented. It is pure: calls, hashes and the fuzzy-key map go in, a score
-comes out. Three variants cover what the official description leaves open (final-plan §4.4):
+comes out. Three variants cover what the official description leaves open:
   primary      fuzzy tokens = NFC + lower + [^\\W_]+ (diacritics kept, multiset); non-fuzzy compared strictly
   pessimistic  fuzzy tokens = NFC + lower + whitespace split (multiset); strict
   optimistic   fuzzy tokens = zaic_tools-style folded set; lenient non-fuzzy comparison (upper bound)

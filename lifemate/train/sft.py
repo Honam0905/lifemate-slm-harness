@@ -200,6 +200,12 @@ def main():
     seed_all(cfg["seed"])
     torch.backends.cuda.matmul.allow_tf32 = True
 
+    missing = [p.name for p in train_files if not p.exists()]
+    if missing:   # a variant with no rows (e.g. no synthetic conversations) is not tokenised
+        log(f"train files not built, skipped: {missing}")
+    train_files = [p for p in train_files if p.exists()]
+    if not train_files:
+        raise SystemExit(f"no tokenised training files in {tokdir}; run scripts/tokenize_trajectories.py first")
     train = load_examples(train_files)
     dev = load_examples([p for p in eval_files if p.exists()])
     if a.eval_limit:

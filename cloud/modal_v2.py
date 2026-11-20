@@ -12,7 +12,7 @@ prediction (epoch 2), all in the cloud. Written 5 Nov afternoon WITHOUT access t
     modal run --detach cloud/modal_v2.py --step predict_asr --asr ftB2-s627   # public with ASR round-2 transcripts
 
 The pipeline itself runs in a small remote orchestrator function, so a detached run needs no local machine.
-Data and artifacts live on the Modal volume `lifemate-v2` (see HANDOFF-v2-modal.md for what to upload):
+Data and artifacts live on the Modal volume `lifemate-v2`; upload this layout first:
     /vol/data/{train,public_test}/...      the official folders WITHOUT audio (transcripts are cached)
     /vol/artifacts/splits/v1.json
     /vol/artifacts/trajectories/v1/{train.gold,train.asr,train.earlier,train.synth,dev.gold}.jsonl

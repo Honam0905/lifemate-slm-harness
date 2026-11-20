@@ -1,0 +1,8 @@
+# FINAL FIT without renaming: the v2 recipe on ALL 1,545 conversations (train + dev + audit) and ALL apps, nothing held out.
+# Same as v2r_all.yaml minus the app/tool renaming, so it needs no rename maps. It has seen dev, so never score it on dev:
+# it goes straight to the public prediction with your chosen ASR (a config like configs/v2_ftB2_s941.yaml).
+# Build: scripts/build_final_fit.py --config configs/v2_all.yaml, then tokenise and train with this config.
+base: v2.yaml
+run_name: v2-all-minicpm5-2b
+train:
+  variants: [allgold, allasr, allearlier, allsynth]
